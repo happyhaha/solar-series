@@ -1,0 +1,212 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+---
+
+<BaseLayout title="Рахим Муратов">
+
+	<section class="px-6 py-8">
+		<!-- Заголовок -->
+		<div class="max-w-xl mx-auto text-left mb-4">
+			<h2 class="text-2xl sm:text-3xl font-black leading-tight mb-4">
+			Онлайн-консультация для тех, кто уже выучил синтаксис PHP, но не понимает, как двигаться дальше.
+			</h2>
+		</div>
+
+		<div class="relative lg:max-w-3xl lg:mx-auto md:mt-14">
+			<div class="flex-1 flex items-center justify-center">
+				<img src="/img/main-black.svg" alt="человек за столом" class="w-[80%] max-w-sm block dark:hidden w-full" />
+				<img src="/img/main-white.svg" alt="человек за столом" class="w-[80%] max-w-sm hidden dark:block w-full" />
+			</div>
+
+			<div class="flex flex-col gap-2 font-pixel text-center  text-lg leading-tight pb-8 mt-5">
+				<p class="md:absolute md:top-[-5%] md:left-[17%] md:max-w-[220px] leading-tight">Синтаксис знаю, но сам писать не могу</p>
+				<p class="md:absolute md:bottom-[35%] md:left-[4%] md:max-w-[220px] leading-tight">Хочу перестать метаться по темам</p>
+				<p class="md:absolute md:top-[-5%] md:right-[8%] md:max-w-[220px] leading-tight">Не вижу общую картину развития</p>
+				<p class="md:absolute md:bottom-[45%] md:right-[5%] lg:md:right-[-5%] md:max-w-[220px] leading-tight">Хочу дойти до реальных проектов</p>
+			</div>
+		</div>
+
+		<div class="md:max-w-xl mx-auto">
+			<p class="text-base sm:text-lg">
+				Учитесь по видео, переписываете чужие примеры, но не понимаете, куда двигаться дальше. 
+				Если это про вас, консультация поможет навести порядок и даст ясность.
+			</p>
+		</div>
+
+
+		<!-- Схема -->
+		<div class="md:max-w-xl md:mx-auto flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 md:mt-12">
+			<!-- Левая часть -->
+			<div class="flex flex-col items-center text-center max-w-xs mt-10 md:mt-0">
+				<img src="/img/chaos-black.svg" alt="бессистемность" class="w-40 mb-3 block dark:hidden" />
+				<img src="/img/chaos-white.svg" alt="бессистемность" class="w-40 mb-3 hidden dark:block" />
+				<p class="text-sm leading-tight">
+					Занимаетесь бессистемно.
+				</p>
+			</div>
+
+			<!-- Стрелка -->
+			<div class="md:flex md:flex-col md:items-center">
+				<div class="flex justify-center hidden md:block">
+					<img src="/img/arrow-black.svg" alt="стрелка" class="w-20 block dark:hidden w-full" />
+					<img src="/img/arrow-white.svg" alt="стрелка" class="w-20 hidden dark:block w-full" />
+				</div>
+				<div class="flex justify-center md:hidden">
+					<img src="/img/arrow2-black.svg" alt="стрелка" class="w-5 block dark:hidden" />
+					<img src="/img/arrow2-white.svg" alt="стрелка" class="w-5 hidden dark:block" />
+				</div>
+				<p class="md:text-sm text-lg font-bold md:font-normal my-4 text-center">
+					Приходите ко мне на созвон
+				</p>
+				<div class="flex justify-center md:hidden">
+					<img src="/img/arrow2-black.svg" alt="стрелка" class="w-5 block dark:hidden" />
+					<img src="/img/arrow2-white.svg" alt="стрелка" class="w-5 hidden dark:block" />
+				</div>
+				
+			</div>
+
+			<!-- Правая часть -->
+			<div class="max-w-[220px] flex flex-col items-center">
+				<img src="/img/list-black.svg" alt="план развития" class="w-40 md:w-30 mb-3 block dark:hidden" /
+				>
+				<img src="/img/list-white.svg" alt="план развития" class="w-40 md:w-30 mb-3 hidden dark:block" /
+				>
+				<p class="text-sm leading-tight">
+					Уходите с пониманием, что делать в вашей ситуации, чтобы стать разработчиком.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="max-w-xl mx-auto px-6 py-4">
+		<div class="text-left mb-4">
+			<h2 class="text-2xl sm:text-3xl font-black leading-tight mb-4">
+			Проблема новичков
+			</h2>
+		</div>
+		<img src="/img/why.png" />
+		<p class="mt-5">
+			Обучение по урокам даёт знание, но не учит решать задачи. Когда человек просто повторяет код, он понимает, что написано, но не понимает, почему именно так.
+		</p>
+		<p class="mt-3">
+			Далее человек изучает все подряд: сегодня учит массивы, потом ООП, а завтра скачивает видеокурс по Laravel.
+		</p>
+		<p class="mt-3">
+			Человек обучается бессистемно. Он знает что такое функции, циклы и массивы, но не понимает как из них собрать проект. Не знает с чего начать, как подходить к проекту, не видит общей картины.
+		</p>
+		<p class="mt-3">
+			В итоге, ругает себя: «Может я тупой; программирование не мое»
+		</p>
+	</section>
+
+	<section class="max-w-xl mx-auto px-6 py-4 mt-5">
+		<div class="text-left mb-4">
+			<h2 class="text-2xl sm:text-3xl font-black leading-tight mb-4">
+			Что делать
+			</h2>
+		</div>
+		<img src="/img/help.png" />
+		<p class="mt-5">
+			Перестаньте искать новые уроки. Вы ищете решение не там.
+		</p>
+		<p class="mt-3">
+			Уроки дают информацию, но не передают опыт. Опыт живет	 в людях — тех, кто уже проходил этот этап, делал ошибки и теперь видит, где вы застряли.
+		</p>
+		<p class="mt-3">
+			Если рядом есть разработчик, которому вы доверяете — поговорите с ним. Если нет — можете записаться ко мне на консультацию. Разберем вашу ситуацию.
+		</p>
+	</section>
+
+	<section class="max-w-xl mx-auto px-6 py-4 mt-5">
+		<div class="text-left mb-4">
+			<h2 class="text-2xl sm:text-3xl font-black leading-tight mb-4">
+			Что будет на консультации
+			</h2>
+		</div>
+
+		<div class="mt-5 md:mt-10">
+			<img src="/img/goal-black.png" class="block dark:hidden w-full"/>
+			<img src="/img/goal-white.png" class="hidden dark:block w-full"/>
+			<span class="font-bold text-lg mt-5 block">Сначала определим цель</span>
+			<ul class="mt-3">
+				<li>
+					— Стать разработчиком и устроиться на работу. 
+				</li>
+				<li>
+					— Писать свои проекты. 
+				</li>
+				<li>
+					— Фрилансить.
+				</li>
+			</ul>
+		</div>
+
+		<div class="mt-15">
+			<img src="/img/goal2-black.png" class="block dark:hidden w-full"/>
+			<img src="/img/goal2-white.png" class="hidden dark:block w-full"/>
+			<span class="font-bold text-lg mt-5 block">Определим проблемные зоны</span>
+			<ul class="mt-3">
+				<li>
+					— «Знаю синтаксис, но не умею придумывать решения и писать код»
+				</li>
+				<li>
+					— «Не понимаю что учить и в каком порядке»
+				</li>
+				<li>
+					— «Как придумывать/находить себе практику»
+				</li>
+				<li>
+					— «Когда я буду готов к трудоустройству»
+				</li>
+				<li>
+					— «Изучил ООП и не понимаю, что же делать дальше. Как написать проект»
+				</li>
+				<li>
+					— «Низкая мотивация. Заставляю себя учиться, хотя понимаю, что надо. Нет самоорганизации. 
+				</li>
+			</ul>
+		</div>
+
+		<div class="mt-15">
+			<img src="/img/goal3-black.png" class="block dark:hidden w-full"/>
+			<img src="/img/goal3-white.png" class="hidden dark:block w-full"/>
+			<span class="font-bold text-lg mt-5 block">Покажу выход из ситуации</span>
+			<p class="mt-3">
+				Сделаю так, чтобы вы увидели общую картину развития; поняли что сейчас главное, а что второстепенное; что изучать, в какой последовательности и насколько глубоко; как правильно учиться и практиковаться; как организовать себя и свое время. 
+			</p>
+		</div>
+
+
+		<div class="mt-15">
+			<img src="/img/goal4-black.png" class="block dark:hidden w-full"/>
+			<img src="/img/goal4-white.png" class="hidden dark:block w-full"/>
+			<span class="font-bold text-lg mt-5 block">Результат</span>
+			<p class="mt-3">
+				Придет ясность и порядок. Больше не нужно сомневаться: «А правильно ли я делаю?». У вас будет маршрут: какие темы учить, какую практику выполнять, как учиться думать.
+			</p>
+		</div>
+	</section>
+
+	<section class="max-w-xl mx-auto px-6 py-4 mt-10">
+		<div class="text-left mb-4">
+			<h2 class="text-2xl sm:text-3xl font-black leading-tight mb-4">
+			Записаться
+			</h2>
+		</div>
+		<img class="rounded-lg shadow-md" src="/img/rahim_portrait2.jpg" />
+		<p class="mt-3 leading-7">
+			<b>Формат:</b> онлайн-созвон в Zoom или Telegram. <br>
+			<b>Длительность:</b> 1 час. Если разбор займет больше времени, доплачивать не нужно. <br>
+			<b>Стоимость:</b> $45 (3750 руб, 25 тыс. тенге). Можно оплатить картой РФ, картой Казахстана, криптой USDT(TRC20). <br>
+			<b>Что нужно подготовить:</b> коротко опишите свой путь: на чём застряли, и при желании покажите код или задачу, с которой не справились. <br> <br>
+
+			Для записи напишите мне в телеграм: <a href="https://t.me/ripplez" target="_blank">@ripplez</a> <br> <br>
+
+			Напишите какая у вас основная цель и проблема. <br>
+			Если смогу помочь, вышлю ссылку на оплату и договоримся о времени созвона.
+		</p>
+	</section>
+
+	
+</BaseLayout>

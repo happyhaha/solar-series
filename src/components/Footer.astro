@@ -1,0 +1,71 @@
+---
+---
+<section class="max-w-xl mx-auto py-2 mt-10">
+    <ul class="flex flex-col text-xs text-gray-500 dark:text-gray-400 gap-1">
+        <li>
+            <a href="/oferta">Оферта</a>
+        </li>
+        <li>
+            <a href="/privacy-policy">Политика конфиденциальности</a>
+        </li>
+    </ul>
+</section>
+
+<section class="max-w-xl mx-auto mt-10 px-6 lg:px-8">
+        <div class="mx-auto flex max-w-lg justify-center gap-3 items-center opacity-70">
+            <img class=" object-contain " src="/img/visa.png" alt="Reform" width="25" height="25">
+            <img class=" object-contain " src="/img/mastercard.png" alt="Tuple" width="25" height="25">
+            <img class=" object-contain " src="/img/kaspi.png" alt="Transistor" width="20" height="20">
+            <img class=" object-contain " src="/img/mir.png" alt="Transistor" width="25" height="25">
+            <img class="object-contain " src="/img/tron.png" alt="Tuple" width="20" height="20">
+        </div>
+</section>
+
+<section class="max-w-xl mx-auto mt-6 px-6 py-2">
+    <p class="text-xs dark:text-gray-500 text-center">© Рахим Муратов, 2017-2025. Права защищены.</p>
+</section>
+
+
+<script is:inline>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const openIcon = document.getElementById('menu-open-icon');
+  const closeIcon = document.getElementById('menu-close-icon');
+
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    openIcon.classList.toggle('hidden');
+    closeIcon.classList.toggle('hidden');
+  });
+
+   // Переключатель темы (свет / тёмная)
+  const themeToggle = document.getElementById('theme-toggle');
+  const iconSun = document.getElementById('icon-sun');
+  const iconMoon = document.getElementById('icon-moon');
+  const html = document.documentElement;
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      html.classList.add('dark');
+      iconMoon?.classList.add('hidden');
+      iconSun?.classList.remove('hidden');
+    } else {
+      html.classList.remove('dark');
+      iconMoon?.classList.remove('hidden');
+      iconSun?.classList.add('hidden');
+    }
+  }
+
+  // При загрузке: читаем сохранённую тему или используем системную
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initial = saved === 'dark' || (saved === null && prefersDark) ? 'dark' : 'light';
+  applyTheme(initial);
+
+  themeToggle?.addEventListener('click', () => {
+    const isDark = html.classList.contains('dark');
+    const newTheme = isDark ? 'light' : 'dark';
+    applyTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+</script>

@@ -1,0 +1,29 @@
+---
+import '../styles/global.css'
+const { title } = Astro.props;
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+
+		<link rel="icon" type="image/png" href="/img/favicon/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="/img/favicon/favicon.svg" />
+		<link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="MyWebSite" />
+		<link rel="manifest" href="/img/favicon/site.webmanifest" />
+
+
+		<title>{title}</title>
+	</head>
+	<body class="antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+		<Header />
+		<slot />
+		<Footer />
+	</body>
+</html>

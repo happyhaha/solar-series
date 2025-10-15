@@ -1,0 +1,19 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  REGISTRY: "registry.gitlab.com/ripple94/marlindev"
+
+build:
+  stage: build
+  script:
+    - docker build -t astro-site:latest -f docker/Dockerfile .
+
+deploy:
+  stage: deploy
+  script:
+    - sudo mkdir -p /var/www/marlindev_astro
+    - sudo cp -r . /var/www/marlindev_astro/
+    - docker network create web || true
+    - docker compose -f /var/www/marlindev_astro/docker-compose.prod.yml up -d --build --remove-orphans

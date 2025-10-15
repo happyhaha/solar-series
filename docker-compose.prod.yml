@@ -1,0 +1,17 @@
+services:
+  astro:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    container_name: astro-site
+    environment:
+      VIRTUAL_HOST: "marlindev.ru"
+      LETSENCRYPT_HOST: "marlindev.ru"
+      VIRTUAL_PORT: 8080
+    networks:
+      - web
+    restart: unless-stopped
+
+networks:
+  web:
+    external: true
