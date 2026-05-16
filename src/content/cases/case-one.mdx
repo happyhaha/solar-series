@@ -1,0 +1,241 @@
+---
+title: Платформа онлайн-обучения программированию
+titleLines:
+  - Платформа онлайн-обучения
+  - программированию
+subtitle: Своя платформа для учеников с YouTube
+client: Собственный продукт
+year: 2024
+role: Делал один — от идеи до прода
+services:
+  - Архитектура и бэкенд
+  - Фронтенд
+  - Инфраструктура и деплой
+  - Поддержка живых потоков
+stack: [React, shadcn/ui, Laravel, PostgreSQL, Docker, CI/CD]
+cover: /img/cases/case-one/screenshot_1.png
+summary: "С YouTube постоянно писали «возьми в обучение». Сделал свою платформу — через неё прошло 90 учеников по трём курсам: PHP с нуля, ООП и Laravel."
+order: 2
+---
+
+## Как стартовал
+
+Я снимал на YouTube про программирование. Под роликами и в личке постоянно
+просили взять в обучение. Я решил попробовать.
+
+<div class="not-prose my-8 max-w-md">
+  <div class="flex flex-col gap-1">
+    <img src="/img/cases/case-one/why-3.png" alt="Сообщение в личку: просьба взять в обучение по программированию" class="w-full rounded-lg border border-gray-200" />
+    <img src="/img/cases/case-one/why-1.png" alt="Другой человек, другой чат: ещё одна просьба взять в обучение" class="w-full rounded-lg border border-gray-200" />
+  </div>
+  <p class="mt-4 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Разные люди, разные чаты. Такие сообщения прилетали постоянно — с них всё и началось.</p>
+</div>
+
+Сначала вёл просто: созвоны, материалы в гугл-доке, домашки в телеге. На
+десятке учеников это развалилось. Я перестал понимать, кто на каком уроке и
+кому ответил. Тогда сделал свою платформу.
+
+Делал один. От схемы на бумаге до прода.
+
+## Какую проблему решает
+
+Обучение шло живыми потоками: группы, доступ по датам, разбор домашек.
+Готовые LMS под такой формат не гнулись. Поэтому платформу написал сам.
+
+Она закрывает три проблемы:
+
+- Ученик не знал, что делать дальше. Теперь на главной видно текущий урок и
+  сроки.
+- Вопросы терялись в общем чате. Теперь вопрос привязан к уроку, ответ
+  видит вся группа.
+- Прогресс и доступы жили в голове и в таблице. Теперь они в системе.
+
+Так это работало раньше. Ученики писали отчёты в сторонних сервисах, в
+основном в телеге. За каждым приходилось следить вручную: кто что сдал, кому
+я ответил, где чей вопрос. На десятке учеников это уже не тянулось.
+
+<figure class="not-prose my-8 max-w-xl">
+  <img src="/img/cases/case-one/before-telegram.gif" alt="Отчёты и вопросы ученика в телеграме: длинная лента переписки без привязки к урокам" class="w-full rounded-xl border border-gray-200 shadow-sm" />
+  <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Отчёты в телеге. За каждым учеником — вручную.</figcaption>
+</figure>
+
+## Интерфейс
+
+Платформа строится вокруг одного действия: ученик зашёл и сразу видит, что
+делать. Ниже пять экранов. По каждому — что было, что мешало, что я сделал.
+
+<div class="not-prose w-screen -ml-6 md:-ml-12 px-6 md:px-12 my-10">
+<div class="mx-auto max-w-6xl flex flex-col gap-12">
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Главная.</strong> Ученик заходит и не помнит, на чём остановился. Раньше он шёл искать это в чате. Теперь на главной сразу видно ближайшее занятие с отсчётом, активные курсы и мои сообщения группе.</p>
+    <div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div class="flex items-center gap-3 border-b border-gray-200 bg-gray-100 px-4 py-3">
+        <div class="flex shrink-0 gap-1.5">
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+        </div>
+        <div class="mx-auto w-full max-w-md truncate rounded-md bg-white px-3 py-1 text-center text-xs text-gray-400">app.codeschool.ru/dashboard</div>
+      </div>
+      <img src="/img/cases/case-one/lms-home.png" alt="Главная ученика: список курсов, ближайшее занятие, лента сообщений преподавателя" loading="lazy" style="aspect-ratio:16 / 9" class="block w-full bg-gray-100 object-top object-cover" />
+    </div>
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Главная ученика — первый экран после входа.</figcaption>
+  </figure>
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Курс.</strong> В курсе много уроков, и без структуры в нём легко потеряться. Человек не понимал, сколько ещё осталось. Поэтому курс разбит на модули и уроки, у каждого статус (сдано, на проверке, не начато) и общий прогресс.</p>
+    <div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div class="flex items-center gap-3 border-b border-gray-200 bg-gray-100 px-4 py-3">
+        <div class="flex shrink-0 gap-1.5">
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+        </div>
+        <div class="mx-auto w-full max-w-md truncate rounded-md bg-white px-3 py-1 text-center text-xs text-gray-400">app.codeschool.ru/courses/php</div>
+      </div>
+      <img src="/img/cases/case-one/lms-course.png" alt="Страница курса «Программирование на PHP»: модули, уроки, прогресс" loading="lazy" style="aspect-ratio:16 / 9" class="block w-full bg-gray-100 object-top object-cover" />
+    </div>
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Страница курса: модули, уроки, статус сдачи.</figcaption>
+  </figure>
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Расписание.</strong> Ученик знал день созвона, но забывал, что к нему сдать. Сроки жили отдельно от занятий. Я свёл занятия и дедлайны на одну шкалу, перенос занятия делается в один клик.</p>
+    <div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div class="flex items-center gap-3 border-b border-gray-200 bg-gray-100 px-4 py-3">
+        <div class="flex shrink-0 gap-1.5">
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+        </div>
+        <div class="mx-auto w-full max-w-md truncate rounded-md bg-white px-3 py-1 text-center text-xs text-gray-400">app.codeschool.ru/schedule</div>
+      </div>
+      <img src="/img/cases/case-one/lms-schedule.png" alt="Расписание занятий со сроками сдачи и кнопкой переноса" loading="lazy" style="aspect-ratio:16 / 9" class="block w-full bg-gray-100 object-top object-cover" />
+    </div>
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Расписание: занятия и дедлайны на одной шкале.</figcaption>
+  </figure>
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Обсуждение урока.</strong> На платформе вопросы и отчёты ушли из телеги внутрь урока. Ученик спрашивает прямо по теме, я отвечаю там же, с кодом. Ответ видит вся группа и получает следующий поток. Искать ничего не нужно: обсуждение лежит рядом с материалом.</p>
+    <div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div class="flex items-center gap-3 border-b border-gray-200 bg-gray-100 px-4 py-3">
+        <div class="flex shrink-0 gap-1.5">
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+        </div>
+        <div class="mx-auto w-full max-w-md truncate rounded-md bg-white px-3 py-1 text-center text-xs text-gray-400">app.codeschool.ru/lesson/xss-sql/discussion</div>
+      </div>
+      <img src="/img/cases/case-one/lesson-discussion.png" alt="Обсуждение урока на платформе: вопрос ученика и разбор преподавателя с кодом, привязанные к конкретному уроку" loading="lazy" class="block h-auto w-full bg-white" />
+    </div>
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Обсуждение прямо в уроке: вопрос, код и разбор в одном месте.</figcaption>
+  </figure>
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Профиль.</strong> На третьей неделе становится тяжело, и часть людей бросает. Держать темп нечем. На профиле — статистика, серия дней подряд и достижения, чтобы был повод вернуться завтра.</p>
+    <div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div class="flex items-center gap-3 border-b border-gray-200 bg-gray-100 px-4 py-3">
+        <div class="flex shrink-0 gap-1.5">
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+        </div>
+        <div class="mx-auto w-full max-w-md truncate rounded-md bg-white px-3 py-1 text-center text-xs text-gray-400">app.codeschool.ru/profile</div>
+      </div>
+      <img src="/img/cases/case-one/lms-profile.png" alt="Профиль ученика: статистика, дни подряд, достижения, настройки" loading="lazy" style="aspect-ratio:16 / 9" class="block w-full bg-gray-100 object-top object-cover" />
+    </div>
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Профиль: статистика, серия дней, достижения.</figcaption>
+  </figure>
+</div>
+</div>
+
+## Со стороны администратора
+
+Ученик видит свой путь. Мне же нужно вести весь поток сразу. Поэтому есть
+вторая половина платформы — для меня.
+
+<div class="not-prose w-screen -ml-6 md:-ml-12 px-6 md:px-12 my-10">
+<div class="mx-auto max-w-6xl flex flex-col gap-12">
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Дашборд.</strong> Раньше я не видел поток целиком и узнавал о проблемах поздно. Теперь на главной сразу: сколько работ ждёт проверки, ближайшие занятия и кто давно не заходил. По цифрам видно состояние потока за пару секунд.</p>
+    <div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div class="flex items-center gap-3 border-b border-gray-200 bg-gray-100 px-4 py-3">
+        <div class="flex shrink-0 gap-1.5">
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+        </div>
+        <div class="mx-auto w-full max-w-md truncate rounded-md bg-white px-3 py-1 text-center text-xs text-gray-400">app.codeschool.ru/admin</div>
+      </div>
+      <img src="/img/cases/case-one/admin-dashboard.png" alt="Дашборд администратора: работы на проверке, активность учеников, ближайшие занятия, кто давно не заходил, средний прогресс потока" loading="lazy" class="block h-auto w-full bg-white" />
+    </div>
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Дашборд админки: очередь проверки и состояние потока.</figcaption>
+  </figure>
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Ученики потока.</strong> В чате было не понять, кто отстал, а кто давно не появлялся. Теперь весь поток одной таблицей: прогресс по курсам, срок сдачи, активность и что ждёт проверки. Сразу видно, к кому пора подойти.</p>
+    <div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div class="flex items-center gap-3 border-b border-gray-200 bg-gray-100 px-4 py-3">
+        <div class="flex shrink-0 gap-1.5">
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+        </div>
+        <div class="mx-auto w-full max-w-md truncate rounded-md bg-white px-3 py-1 text-center text-xs text-gray-400">app.codeschool.ru/admin/students</div>
+      </div>
+      <img src="/img/cases/case-one/admin-students.png" alt="Список учеников потока: прогресс по курсам, срок сдачи, активность и статус проверки по каждому ученику" loading="lazy" class="block h-auto w-full bg-white" />
+    </div>
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Ученики потока: прогресс, сроки, активность одной таблицей.</figcaption>
+  </figure>
+</div>
+</div>
+
+## На чём сделано
+
+Я один, поэтому всё должно чиниться без чужой помощи. Брал то, что знаю в
+проде. Каждый выбор закрывал конкретную проблему.
+
+- Логики много: курсы, потоки, доступы. Бэкенд на **Laravel**.
+- Интерфейс с перезагрузками тормозит работу. Фронтенд на **React**,
+  компоненты из **shadcn/ui**.
+- Данные сильно связаны: ученик, группа, курс, урок, прогресс. База —
+  **PostgreSQL**.
+- Окружение на ноуте и на сервере расходилось. Всё в **Docker**.
+- Ручной деплой перед стартом потока опасен. Настроил **CI/CD**: пуш,
+  прогон, выкат.
+
+## Результат
+
+- **90 учеников** прошло через платформу.
+- **3 курса** в одном пути: PHP с нуля, ООП, Laravel.
+- Обучение шло живыми потоками в группах.
+
+Цифры — не главное. Я перестал держать в голове, кто где застрял, и занялся
+обучением. Ученики перестали искать материалы по чатам.
+
+## Результаты после обучения
+
+Ученики приходили без работы и без уверенности. После курсов часть вышла на
+работу, часть начала зарабатывать на фрилансе. Вот что они написали сами.
+
+<div class="not-prose w-screen -ml-6 md:-ml-12 px-6 md:px-12 my-10">
+<div class="mx-auto max-w-5xl columns-1 sm:columns-2 gap-4 [&>img]:!my-0 [&>img]:mb-4 [&>img]:break-inside-avoid">
+  <img src="/img/cases/case-one/testimonial-1.png" alt="Ученик: «Рахим, привет! Вчера на работу приняли. Ровно три месяца с начала курса. Компания mediaten, аутсорс. Тестовое делал на yii2, твой ютуб-плейлист выручил. Трудоустройство прошло успешно благодаря тебе»" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-2.png" alt="Ученик: «Через три-четыре месяца устроился Symfony-разработчиком, проект на Кипре. Создаю API, оптимизирую запросы. Спасибо, Рахим, помог открыть дверь в этот мир, безмерно благодарен»" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-tg.png" alt="Ученик Кирилл: устроился в европейскую компанию, на собеседовании было много вопросов, теперь сам менторит новичков. Благодарность за обучение" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-4.png" alt="Ученик Владимир: SOLID был на каждом уроке, проектирование и паттерны. Получил оффер после первого собеседования, зарплата выросла. «После курса обратной дороги нет»" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-13.png" alt="Переписка: ученик прошёл собеседование, взяли на стажировку. «Спасибо тебе большое за такой классный курс»" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-3.png" alt="Ученик: «Заработал первые деньги в новой профессии. Появилась уверенность, спасибо». Работа на бирже и фрилансе" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-6.png" alt="Rasul Guseinov: несколько лет писал на PHP с чувством, что делает неправильно. После курса понял, какой код писал раньше. «Подход обучения уникальный, всем рекомендую»" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-8.png" alt="Максим Соловьёв: пришёл полным нулём, самоучкой не понимал, куда двигаться. На курсе практика как в реальном проекте, помогают в группе. «Если хочешь научиться писать код, а не переписывать — бери»" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-9.png" alt="Oleg Khayrullin: курс закрывает лакуну с практикой, были проблемы с ООП — знал как, но не понимал почему. «Всё последовательно и структурировано, искал именно такой курс и нашёл»" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-5.png" alt="Ильдар Сибгатулин: «До уроков думал, что не могу нормально кодить. Учит на примерах и реальной вёрстке. Сейчас спокойно пишу код и понимаю его. Всем советую»" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-10.png" alt="Vladimir: «Структурированный курс, уроки по 10 минут, без воды. Показывает эволюцию от процедурного подхода к ООП. Рахим уделяет время и отвечает на вопросы»" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-11.png" alt="Ученик: «Очень рад, что выбрал Рахима для изучения Laravel. Получил глубокие знания. Рекомендую квалифицированного и терпеливого наставника»" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-12.png" alt="AL: пробовал интерактивные курсы и книги — всё разжёвано, навыка решать самому нет. «Курс Marlin'а — натуральный курс молодого бойца: делаешь всё сам, ментор даёт задание как работодатель»" class="w-full rounded-lg border border-gray-200" />
+  <img src="/img/cases/case-one/testimonial-7.png" alt="Мага Хасанов: «Благодарность за готовый продукт для начинающих. Отбил половину стоимости курса, выполняя курсовые на заказ. Рекомендую, жалею, что не записался раньше»" class="w-full rounded-lg border border-gray-200" />
+</div>
+</div>
+
+## Что бы сделал иначе
+
+Схему курсов сделал сложнее, чем нужно: модули, уроки, вложенность. Первым
+потокам хватило бы плоского списка. Сделал бы структуру простой и усложнял
+по факту.
+
+Уведомления отложил на потом. Из-за этого первые потоки многое держали в
+телеге. Взялся бы за них сразу.
