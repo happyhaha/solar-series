@@ -168,16 +168,9 @@ import AnnotatedShot from '../../components/AnnotatedShot.astro';
   </figure>
   <figure>
     <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Ученики потока.</strong> В чате было не понять, кто отстал, а кто давно не появлялся. Теперь весь поток одной таблицей: прогресс по курсам, срок сдачи, активность и что ждёт проверки. Сразу видно, к кому пора подойти.</p>
-<AnnotatedShot
-      src="/img/cases/case-one/admin-students.png"
-      alt="Список учеников потока"
-      spots={[
-        { n: 1, x: 64, y: 18, title: 'Поток и счётчик', text: 'Какой поток и сколько учеников сейчас на обучении.' },
-        { n: 2, x: 58, y: 39, title: 'Прогресс по курсам', text: 'Сколько пройдено у каждого — наглядной полосой.' },
-        { n: 3, x: 66, y: 47, title: 'Срок сдачи', text: 'Дедлайн ближайшей работы. Видно, кто горит.' },
-        { n: 4, x: 84, y: 54, title: 'Статус проверки', text: 'У кого работа ждёт ответа — отметка справа.' }
-      ]}
-    />
+<div class="not-prose my-8">
+      <img src="/img/cases/case-one/admin-students.png" alt="Список учеников потока: прогресс по курсам, срок сдачи, активность и статус проверки по каждому ученику" loading="lazy" class="block w-full rounded-lg border border-gray-200" />
+    </div>
     <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Ученики потока: прогресс, сроки, активность одной таблицей.</figcaption>
   </figure>
 </div>
