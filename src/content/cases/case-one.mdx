@@ -18,6 +18,8 @@ summary: "С YouTube постоянно писали «возьми в обуч�
 order: 2
 ---
 
+import AnnotatedShot from '../../components/AnnotatedShot.astro';
+
 ## Как стартовал
 
 Я снимал на YouTube про программирование. Под роликами и в личке постоянно
@@ -153,17 +155,16 @@ order: 2
 <div class="mx-auto max-w-6xl flex flex-col gap-12">
   <figure>
     <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Дашборд.</strong> Раньше я не видел поток целиком и узнавал о проблемах поздно. Теперь на главной сразу: сколько работ ждёт проверки, ближайшие занятия и кто давно не заходил. По цифрам видно состояние потока за пару секунд.</p>
-    <div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
-      <div class="flex items-center gap-3 border-b border-gray-200 bg-gray-100 px-4 py-3">
-        <div class="flex shrink-0 gap-1.5">
-          <span class="size-3 rounded-full bg-gray-300"></span>
-          <span class="size-3 rounded-full bg-gray-300"></span>
-          <span class="size-3 rounded-full bg-gray-300"></span>
-        </div>
-        <div class="mx-auto w-full max-w-md truncate rounded-md bg-white px-3 py-1 text-center text-xs text-gray-400">app.codeschool.ru/admin</div>
-      </div>
-      <img src="/img/cases/case-one/admin-dashboard.png" alt="Дашборд администратора: работы на проверке, активность учеников, ближайшие занятия, кто давно не заходил, средний прогресс потока" loading="lazy" class="block h-auto w-full bg-white" />
-    </div>
+<AnnotatedShot
+      src="/img/cases/case-one/admin-dashboard.png"
+      alt="Дашборд администратора платформы"
+      spots={[
+        { n: 1, x: 58, y: 16, title: 'Состояние потока', text: 'Работы на проверке, активность за 2 дня, средний прогресс. Видно за пару секунд.' },
+        { n: 2, x: 63, y: 33, title: 'Очередь проверки', text: 'Кто сдал и ждёт ответа. Раньше терялось в чате.' },
+        { n: 3, x: 60, y: 58, title: 'Ближайшие занятия', text: 'Что и когда разбираем, с кем. Расписание не в голове.' },
+        { n: 4, x: 58, y: 84, title: 'Кто давно не заходил', text: 'Кто пропал. Сразу видно, к кому подойти.' }
+      ]}
+    />
     <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Дашборд админки: очередь проверки и состояние потока.</figcaption>
   </figure>
   <figure>
