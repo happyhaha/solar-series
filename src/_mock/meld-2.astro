@@ -1,0 +1,105 @@
+---
+// AddSheet — нижний лист поверх затемнённого Home
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meld — новая транзакция</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,350;0,9..144,400;1,9..144,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fbf8f2; --ink: #1a1917; --ink-muted: #6e6a62; --ink-faint: #b1aba0;
+        --paper: #f3eee5; --hair: rgba(26,25,23,.09); --hair-strong: rgba(26,25,23,.16);
+        --chip-bg: rgba(26,25,23,.05);
+        --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+        --font-serif: 'Fraunces', Georgia, serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { background: var(--bg); }
+      body { font-family: var(--font-sans); }
+      .phone { width: 100vw; min-height: 100vh; background: var(--bg); color: var(--ink);
+        font-size: 17px; line-height: 1.45; position: relative; overflow: hidden; }
+
+      /* затемнённый фон (Home) */
+      .behind { position: absolute; inset: 0; padding: 60px 20px;
+        filter: saturate(.8) blur(2px); opacity: .5; }
+      .behind .today { font-family: var(--font-serif); font-style: italic; font-size: 13px;
+        color: var(--ink-muted); }
+      .behind .balance { font-family: var(--font-serif); font-weight: 350; font-size: 80px;
+        line-height: 1; margin-top: 6px; }
+      .backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.38); }
+
+      .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--bg);
+        border-radius: 20px 20px 0 0; padding: 12px 20px calc(20px + env(safe-area-inset-bottom));
+        box-shadow: 0 -12px 40px -12px rgba(26,25,23,.35); }
+      .grab { width: 36px; height: 4px; border-radius: 99px; background: var(--hair-strong);
+        margin: 0 auto 18px; }
+      .title { font-family: var(--font-serif); font-weight: 400; font-size: 22px;
+        margin-bottom: 18px; }
+      .type-switch { display: flex; gap: 8px; }
+      .type-switch button { flex: 1; padding: 8px; border: 0; border-radius: 8px;
+        background: var(--chip-bg); color: var(--ink); font: inherit; font-size: 15px;
+        cursor: pointer; }
+      .type-switch button.active { background: var(--ink); color: var(--bg); }
+      .amount { display: flex; align-items: baseline; gap: 8px; margin: 26px 0; }
+      .amount .v { font-family: var(--font-serif); font-weight: 350; font-size: 64px;
+        line-height: 1; }
+      .amount .unit { font-family: var(--font-serif); font-size: 28px; color: var(--ink-muted); }
+      .picker { width: 100%; text-align: left; padding: 14px; border: 1px solid var(--hair);
+        border-radius: 12px; background: transparent; font: inherit; font-size: 15px;
+        display: flex; align-items: center; gap: 12px; margin-bottom: 12px; color: var(--ink); }
+      .picker .emo { font-size: 18px; }
+      .picker .placeholder { color: var(--ink-faint); }
+      textarea { width: 100%; padding: 12px; border: 1px solid var(--hair); border-radius: 12px;
+        background: var(--paper); font-family: var(--font-serif); font-style: italic;
+        font-size: 15px; color: var(--ink); resize: none; margin-bottom: 20px; }
+      textarea::placeholder { color: var(--ink-faint); }
+      .submit { width: 100%; padding: 16px; border: 0; border-radius: 12px;
+        background: var(--ink); color: var(--bg); font: inherit; font-weight: 500;
+        font-size: 15px; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="behind">
+        <div class="today">вторник, 16 мая</div>
+        <div class="balance">248 600 ₸</div>
+      </div>
+      <div class="backdrop"></div>
+
+      <div class="sheet">
+        <div class="grab"></div>
+        <h2 class="title">Новая транзакция</h2>
+
+        <div class="type-switch">
+          <button class="active">расход</button>
+          <button>доход</button>
+        </div>
+
+        <div class="amount">
+          <span class="v">34 990</span>
+          <span class="unit">₸</span>
+        </div>
+
+        <button class="picker">
+          <span class="emo">🛒</span>
+          <span>продукты</span>
+        </button>
+        <button class="picker">
+          <span>вторник, 16 мая</span>
+        </button>
+
+        <textarea rows="2">продукты на неделю</textarea>
+
+        <button class="submit">Сохранить 34 990 ₸</button>
+      </div>
+    </div>
+  </body>
+</html>

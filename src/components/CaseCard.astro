@@ -1,0 +1,29 @@
+---
+import BrowserFrame from './BrowserFrame.astro';
+import DeviceMockup from './DeviceMockup.astro';
+
+interface Props {
+  href: string;
+  title: string;
+  cover?: string;
+  coverFit?: 'cover' | 'contain';
+  coverAspect?: string;
+  coverType?: 'browser' | 'device';
+  screens?: string[];
+}
+
+const { href, title, cover, coverFit = 'cover', coverAspect, coverType = 'browser', screens } = Astro.props;
+---
+
+<a href={href} class="group block">
+  <h2
+    class="font-heading mb-3 text-sm md:text-base font-bold tracking-display text-gray-900 group-hover:text-accent-hover transition-colors"
+  >
+    {title}
+  </h2>
+  {coverType === 'device' ? (
+    <DeviceMockup alt={title} screens={screens} />
+  ) : cover ? (
+    <BrowserFrame src={cover} alt={title} compact loading="lazy" fit={coverFit} aspect={coverAspect} />
+  ) : null}
+</a>

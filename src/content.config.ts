@@ -17,12 +17,20 @@ const cases = defineCollection({
     services: z.array(z.string()).default([]),
     stack: z.array(z.string()).default([]),
     cover: z.string().optional(),
+    // coverInHeader=false — не выводить cover в шапке кейса
+    // (но он всё равно нужен для карточки на главной и SEO).
+    coverInHeader: z.boolean().default(true),
+    // heroImage — широкий снимок на уровне секции, между шапкой кейса и телом.
+    heroImage: z.string().optional(),
     coverFit: z.enum(['cover', 'contain']).default('cover'),
     coverAspect: z.string().optional(),
     coverType: z.enum(['browser', 'device']).default('browser'),
     screens: z.array(z.string()).optional(),
     gallery: z.array(z.string()).optional(),
     summary: z.string(),
+    // summaryInHeader=false — не выводить summary в шапке кейса
+    // (но он всё равно нужен для карточки на главной и SEO).
+    summaryInHeader: z.boolean().default(true),
     links: z
       .object({
         live: z.string().url().optional(),

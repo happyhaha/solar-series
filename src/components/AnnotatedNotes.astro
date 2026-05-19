@@ -1,0 +1,67 @@
+---
+interface Note { y: number; title: string; text: string }
+interface Props {
+  src: string;
+  alt: string;
+  notes: Note[];
+  loading?: 'lazy' | 'eager';
+}
+const { src, alt, notes, loading = 'lazy' } = Astro.props;
+---
+
+<div class="anotes not-prose">
+  <div class="anotes-grid">
+    <div class="anotes-shot">
+      <img src={src} alt={alt} loading={loading} />
+    </div>
+    <ul class="anotes-list">
+      {notes.map((n) => (
+        <li style={`top:${n.y}%`}>
+          <strong>{n.title}</strong>
+          <span>{n.text}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<style>
+  /* Выход из узкой колонки Prose (max-w-2xl) на всю ширину секции.
+     Тот же приём, что в SplitShot/.shot-wide: ширина от вьюпорта,
+     без отрицательных margin (Prose прижат влево, не центрирован). */
+  .anotes {
+    width: calc(100vw - 3rem);
+    margin: 2.5rem 0;
+  }
+  .anotes-grid {
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .anotes-shot { position: relative; width: 100%; }
+  .anotes-shot img {
+    display: block; width: 100%; height: auto;
+    border-radius: 10px; border: 1px solid #e0e0e0;
+  }
+
+  /* мобила: заметки списком под картинкой */
+  .anotes-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 28px; }
+  .anotes-list li { display: block; }
+  .anotes-list strong { display: block; margin-bottom: 4px; font-size: .98rem; color: var(--color-prose-body); }
+  .anotes-list span { color: #666; font-size: .92rem; }
+
+  @media (min-width: 768px) {
+    .anotes { width: calc(100vw - 6rem); }
+  }
+
+  @media (min-width: 1024px) {
+    .anotes-grid {
+      display: grid; grid-template-columns: 1fr 240px; align-items: stretch;
+    }
+    /* десктоп: заметки на полях, выровнены по уровню картинки */
+    .anotes-list {
+      position: relative; height: 100%; display: block;
+    }
+    .anotes-list li {
+      position: absolute; left: 0; right: 0; transform: translateY(-50%);
+    }
+  }
+</style>

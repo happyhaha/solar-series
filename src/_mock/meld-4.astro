@@ -1,0 +1,90 @@
+---
+const tx = [
+  { title: 'Magnum', note: 'продукты на неделю', when: 'сегодня', amount: -12_480 },
+  { title: 'Small', note: 'молоко, хлеб', when: 'вчера', amount: -3_120 },
+  { title: 'Magnum', note: '', when: '14 мая', amount: -8_640 },
+  { title: 'Galmart', note: 'овощи', when: '12 мая', amount: -5_900 },
+  { title: 'Small', note: '', when: '11 мая', amount: -2_410 },
+  { title: 'Magnum', note: 'бытовая химия', when: '8 мая', amount: -6_750 },
+];
+const money = (n: number) =>
+  '−' + Math.abs(n).toLocaleString('ru-RU') + ' ₸';
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meld — Категория</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,350;0,9..144,400;1,9..144,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fbf8f2; --ink: #1a1917; --ink-muted: #6e6a62; --ink-faint: #b1aba0;
+        --paper: #f3eee5; --hair: rgba(26,25,23,.09); --hair-strong: rgba(26,25,23,.16);
+        --expense: #a6432a;
+        --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+        --font-serif: 'Fraunces', Georgia, serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { background: var(--bg); }
+      body { font-family: var(--font-sans); }
+      .phone { width: 100vw; min-height: 100vh; background: var(--bg); color: var(--ink);
+        font-size: 17px; line-height: 1.45; position: relative; overflow: hidden; }
+      .top { display: flex; align-items: center; gap: 14px; padding: 26px 20px 8px; }
+      .back { font-size: 20px; color: var(--ink-muted); }
+      .top .ttl { font-family: var(--font-serif); font-style: italic; font-size: 15px;
+        color: var(--ink-muted); }
+      .hero { padding: 10px 20px 18px; display: flex; align-items: center; gap: 16px; }
+      .emo { font-size: 34px; }
+      .hero .sum { display: flex; flex-direction: column; }
+      .hero .name { font-family: var(--font-serif); font-style: italic; font-size: 15px;
+        color: var(--ink-muted); }
+      .hero .tot { font-family: var(--font-serif); font-weight: 350; font-size: 44px;
+        line-height: 1.05; }
+      .hero .tot small { font-size: 22px; color: var(--ink-muted); }
+      .meta { padding: 0 20px 6px; font-family: var(--font-serif); font-style: italic;
+        font-size: 13px; color: var(--ink-muted); }
+      .list { list-style: none; padding: 0 20px; }
+      .row { display: grid; grid-template-columns: 1fr auto; gap: 12px;
+        padding: 14px 0; border-top: 1px dashed var(--hair-strong); }
+      .row .b .t { font-size: 15px; }
+      .row .b .s { font-size: 11.5px; color: var(--ink-faint); margin-top: 2px; }
+      .row .a { font-size: 15px; color: var(--expense);
+        font-variant-numeric: tabular-nums; align-self: center; }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="top">
+        <span class="back">←</span>
+        <span class="ttl">категория · май</span>
+      </div>
+
+      <div class="hero">
+        <span class="emo">🛒</span>
+        <div class="sum">
+          <span class="name">продукты</span>
+          <span class="tot">142 300<small> ₸</small></span>
+        </div>
+      </div>
+      <div class="meta">14 операций · в среднем 10 164 ₸</div>
+
+      <ul class="list">
+        {tx.map((t) => (
+          <li class="row">
+            <div class="b">
+              <div class="t">{t.title}</div>
+              {t.note ? <div class="s">{t.note} · {t.when}</div> : <div class="s">{t.when}</div>}
+            </div>
+            <div class="a">{money(t.amount)}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </body>
+</html>
