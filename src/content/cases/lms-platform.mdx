@@ -1,0 +1,227 @@
+---
+title: Платформа онлайн-обучения программированию
+titleLines:
+  - Платформа онлайн-обучения
+  - программированию
+subtitle: Своя платформа для учеников с ютуб
+client: Собственный продукт
+year: 2024
+role: Делал один — от идеи до прода
+brand: Проект в разработке — ссылка появится скоро
+services:
+  - Архитектура и бэкенд
+  - Фронтенд
+  - Инфраструктура и деплой
+  - Поддержка живых потоков
+stack: [React, shadcn/ui, Laravel, PostgreSQL, Docker, CI/CD]
+cover: /img/cases/lms-platform/screenshot_1.png
+summary: "Я сам прошел путь в разработку и увидел проблему в IT-образовании: много теории, мало практики, к реальной работе это не готовит. Предложил свое решение и собрал учеников в потоки. Построил под это платформу"
+order: 3
+---
+
+import AnnotatedShot from '../../components/AnnotatedShot.astro';
+
+## Как стартовал
+
+На ютуб я снимал ролики про программирование и делился своим опытом. Я
+помогал новичкам разобраться в темах, которые сам когда-то проходил тяжело.
+Люди смотрели эти ролики и начали писать мне с вопросами.
+
+<div class="not-prose my-8 max-w-md">
+  <div class="flex flex-col gap-1">
+    <img src="/img/cases/lms-platform/why-3.png" alt="Сообщение в личку: просьба взять в обучение по программированию" class="w-full rounded-lg border border-gray-200" />
+    <img src="/img/cases/lms-platform/why-1.png" alt="Другой человек, другой чат: еще одна просьба взять в обучение" class="w-full rounded-lg border border-gray-200" />
+  </div>
+  <p class="mt-4 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Это писали разные люди в разных чатах. Такие сообщения приходили мне постоянно.</p>
+</div>
+
+Сначала я отвечал каждому в личке. У разных людей вопросы были одни и те же,
+и я объяснял одно и то же по много раз. Это занимало много времени. Я собрал
+людей на групповой созвон и разобрал тему сразу для всех.
+
+Некоторые приходили на такие созвоны еще раз и еще. Им было интересно
+учиться дальше. В это же время приходили новые люди, и я объяснял им другие
+темы с самого начала. Группы шли вразнобой, каждый на своем месте.
+
+Я решил проводить обучение потоками. Я набираю группу, она идет по программе
+вместе от начала до конца. Так появилась структура: курс, поток, расписание,
+домашние задания.
+
+Сначала я вел все это в гугл-доке и в телеграме. Когда учеников стало около
+десяти, так работать уже не получалось. Я перестал понимать, кто на каком
+уроке и кому я уже ответил. Я решил сделать свою платформу и написал ее сам.
+
+<figure class="not-prose my-8 max-w-xl">
+  <img src="/img/cases/lms-platform/before-telegram.gif" alt="Лента отчетов учеников в гитхабе: записей так много, что они превращаются в кашу" class="w-full rounded-xl border border-gray-200 shadow-sm" />
+  <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Отчеты учеников я собирал в гитхабе. Их набиралось столько, что получалась каша.</figcaption>
+</figure>
+## Какую проблему решает
+
+Готовые LMS рассчитаны на самостоятельные курсы. Ученик проходит такой курс
+когда хочет, без расписания и без преподавателя рядом. У меня обучение шло
+потоками с общими сроками и разбором на созвонах, и под это ни одна готовая
+система не подходила. Поэтому я написал свою.
+
+Платформа убрала три вещи, которые мешали больше всего. Ученик больше не
+гадает, что делать дальше, потому что заходит и сразу видит текущий урок и
+сроки. Вопрос больше не теряется в общем чате, потому что он привязан к
+уроку и ответ видит вся группа. Прогресс и доступы больше не живут в моей
+голове и в таблице, теперь их держит система.
+
+## Интерфейс
+
+Платформа строится вокруг одного действия: ученик зашел и сразу видит, что
+делать. Ниже пять экранов. По каждому — что было, что мешало, что я сделал.
+
+<div class="not-prose w-screen -ml-6 md:-ml-12 px-6 md:px-12 my-10">
+<div class="mx-auto max-w-6xl flex flex-col gap-12">
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Главная.</strong> Ученик заходит и не помнит, на чем остановился. Раньше он шел искать это в чате. Теперь на главной сразу видно ближайшее занятие с отсчетом, активные курсы и мои сообщения группе.</p>
+    <div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div class="flex items-center gap-3 border-b border-gray-200 bg-gray-100 px-4 py-3">
+        <div class="flex shrink-0 gap-1.5">
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+        </div>
+        <div class="mx-auto w-full max-w-md truncate rounded-md bg-white px-3 py-1 text-center text-xs text-gray-400">marlindev.ru</div>
+      </div>
+      <img src="/img/cases/lms-platform/lms-home.png" alt="Главная ученика: список курсов, ближайшее занятие, лента сообщений преподавателя" loading="lazy" style="aspect-ratio:16 / 9" class="block w-full bg-gray-100 object-top object-cover" />
+    </div>
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Главная ученика — первый экран после входа.</figcaption>
+  </figure>
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Курс.</strong> В курсе много уроков, и без структуры в нем легко потеряться. Человек не понимал, сколько еще осталось. Поэтому курс разбит на модули и уроки, у каждого статус (сдано, на проверке, не начато) и общий прогресс.</p>
+    <div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div class="flex items-center gap-3 border-b border-gray-200 bg-gray-100 px-4 py-3">
+        <div class="flex shrink-0 gap-1.5">
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+        </div>
+        <div class="mx-auto w-full max-w-md truncate rounded-md bg-white px-3 py-1 text-center text-xs text-gray-400">marlindev.ru/courses/php</div>
+      </div>
+      <img src="/img/cases/lms-platform/lms-course.png" alt="Страница курса «Программирование на PHP»: модули, уроки, прогресс" loading="lazy" style="aspect-ratio:16 / 9" class="block w-full bg-gray-100 object-top object-cover" />
+    </div>
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Страница курса: модули, уроки, статус сдачи.</figcaption>
+  </figure>
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Расписание.</strong> Ученик знал день созвона, но забывал, что к нему сдать. Сроки жили отдельно от занятий. Я свел занятия и дедлайны на одну шкалу, перенос занятия делается в один клик.</p>
+    <div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div class="flex items-center gap-3 border-b border-gray-200 bg-gray-100 px-4 py-3">
+        <div class="flex shrink-0 gap-1.5">
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+        </div>
+        <div class="mx-auto w-full max-w-md truncate rounded-md bg-white px-3 py-1 text-center text-xs text-gray-400">marlindev.ru/schedule</div>
+      </div>
+      <img src="/img/cases/lms-platform/lms-schedule.png" alt="Расписание занятий со сроками сдачи и кнопкой переноса" loading="lazy" style="aspect-ratio:16 / 9" class="block w-full bg-gray-100 object-top object-cover" />
+    </div>
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Расписание: занятия и дедлайны на одной шкале.</figcaption>
+  </figure>
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Обсуждение урока.</strong> На платформе вопросы и отчеты ушли из телеги внутрь урока. Ученик спрашивает прямо по теме, я отвечаю там же, с кодом. Ответ видит вся группа и получает следующий поток. Искать ничего не нужно: обсуждение лежит рядом с материалом.</p>
+<AnnotatedShot
+      src="/img/cases/lms-platform/lesson-discussion.png"
+      alt="Обсуждение урока на платформе: вопрос ученика и разбор преподавателя с кодом"
+      spots={[
+        { n: 1, x: 66, y: 5, title: 'Привязано к уроку', text: 'Обсуждение внутри конкретного урока, не в общем чате.' },
+        { n: 2, x: 42, y: 20, title: 'Вопрос ученика', text: 'Спрашивает прямо по теме урока.' },
+        { n: 3, x: 76, y: 64, title: 'Разбор с кодом', text: 'Отвечаю там же, с примерами кода.' },
+        { n: 4, x: 66, y: 86, title: 'Видит вся группа', text: 'Ответ остается в уроке — получает и следующий поток.' }
+      ]}
+    />
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Обсуждение прямо в уроке: вопрос, код и разбор в одном месте.</figcaption>
+  </figure>
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Профиль.</strong> На третьей неделе становится тяжело, и часть людей бросает. Держать темп нечем. На профиле — статистика, серия дней подряд и достижения, чтобы был повод вернуться завтра.</p>
+    <div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div class="flex items-center gap-3 border-b border-gray-200 bg-gray-100 px-4 py-3">
+        <div class="flex shrink-0 gap-1.5">
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+          <span class="size-3 rounded-full bg-gray-300"></span>
+        </div>
+        <div class="mx-auto w-full max-w-md truncate rounded-md bg-white px-3 py-1 text-center text-xs text-gray-400">marlindev.ru/profile</div>
+      </div>
+      <img src="/img/cases/lms-platform/lms-profile.png" alt="Профиль ученика: статистика, дни подряд, достижения, настройки" loading="lazy" style="aspect-ratio:16 / 9" class="block w-full bg-gray-100 object-top object-cover" />
+    </div>
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Профиль: статистика, серия дней, достижения.</figcaption>
+  </figure>
+</div>
+</div>
+
+## Со стороны администратора
+
+Ученик видит свой путь. Мне же нужно вести весь поток сразу. Поэтому есть
+вторая половина платформы — для меня.
+
+<div class="not-prose w-screen -ml-6 md:-ml-12 px-6 md:px-12 my-10">
+<div class="mx-auto max-w-6xl flex flex-col gap-12">
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Дашборд.</strong> Раньше я не видел поток целиком и узнавал о проблемах поздно. Теперь на главной сразу: сколько работ ждет проверки, ближайшие занятия и кто давно не заходил. По цифрам видно состояние потока за пару секунд.</p>
+<AnnotatedShot
+      src="/img/cases/lms-platform/admin-dashboard.png"
+      alt="Дашборд администратора платформы"
+      spots={[
+        { n: 1, x: 58, y: 16, title: 'Состояние потока', text: 'Работы на проверке, активность за 2 дня, средний прогресс. Видно за пару секунд.' },
+        { n: 2, x: 63, y: 33, title: 'Очередь проверки', text: 'Кто сдал и ждет ответа. Раньше терялось в чате.' },
+        { n: 3, x: 60, y: 58, title: 'Ближайшие занятия', text: 'Что и когда разбираем, с кем. Расписание не в голове.' },
+        { n: 4, x: 58, y: 84, title: 'Кто давно не заходил', text: 'Кто пропал. Сразу видно, к кому подойти.' }
+      ]}
+    />
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Дашборд админки: очередь проверки и состояние потока.</figcaption>
+  </figure>
+  <figure>
+    <p class="mb-4 text-[1.125rem] md:text-[1.25rem] leading-[1.65] text-prose-body"><strong>Ученики потока.</strong> В чате было не понять, кто отстал, а кто давно не появлялся. Теперь весь поток одной таблицей: прогресс по курсам, срок сдачи, активность и что ждет проверки. Сразу видно, к кому пора подойти.</p>
+<div class="not-prose my-8">
+      <img src="/img/cases/lms-platform/admin-students.png" alt="Список учеников потока: прогресс по курсам, срок сдачи, активность и статус проверки по каждому ученику" loading="lazy" class="block w-full rounded-lg border border-gray-200" />
+    </div>
+    <figcaption class="mt-3 text-[0.95rem] md:text-[1rem] leading-[1.6] text-gray-500">Ученики потока: прогресс, сроки, активность одной таблицей.</figcaption>
+  </figure>
+</div>
+</div>
+
+## Результаты после обучения
+
+Ученики приходили без работы и без уверенности. После курсов часть вышла на
+работу, часть начала зарабатывать на фрилансе. Вот что они написали сами.
+
+<div class="not-prose w-screen -ml-6 md:-ml-12 px-6 md:px-12 my-10">
+<div class="mx-auto max-w-5xl grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
+  <div class="flex flex-col gap-4">
+    <img src="/img/cases/lms-platform/testimonial-1.png" alt="Ученик: «Рахим, привет! Вчера на работу приняли. Ровно три месяца с начала курса. Компания mediaten, аутсорс. Тестовое делал на yii2, твой ютуб-плейлист выручил. Трудоустройство прошло успешно благодаря тебе»" class="w-full rounded-lg border border-gray-200" />
+    <img src="/img/cases/lms-platform/testimonial-13.png" alt="Переписка: ученик прошел собеседование, взяли на стажировку. «Спасибо тебе большое за такой классный курс»" class="w-full rounded-lg border border-gray-200" />
+    <img src="/img/cases/lms-platform/testimonial-tg.png" alt="Ученик Кирилл: устроился в европейскую компанию, на собеседовании было много вопросов, теперь сам менторит новичков. Благодарность за обучение" class="w-full rounded-lg border border-gray-200" />
+    <img src="/img/cases/lms-platform/testimonial-4.png" alt="Ученик Владимир: SOLID был на каждом уроке, проектирование и паттерны. Получил оффер после первого собеседования, зарплата выросла. «После курса обратной дороги нет»" class="w-full rounded-lg border border-gray-200" />
+    <img src="/img/cases/lms-platform/testimonial-12.png" alt="AL: пробовал интерактивные курсы и книги — все разжевано, навыка решать самому нет. «Курс Marlin'а — натуральный курс молодого бойца: делаешь все сам, ментор дает задание как работодатель»" class="w-full rounded-lg border border-gray-200 bg-black" />
+    <img src="/img/cases/lms-platform/testimonial-7.png" alt="Мага Хасанов: «Благодарность за готовый продукт для начинающих. Отбил половину стоимости курса, выполняя курсовые на заказ. Рекомендую, жалею, что не записался раньше»" class="w-full rounded-lg border border-gray-200 bg-black" />
+  </div>
+  <div class="flex flex-col gap-4">
+    <img src="/img/cases/lms-platform/testimonial-2.png" alt="Ученик: «Через три-четыре месяца устроился Symfony-разработчиком, проект на Кипре. Создаю API, оптимизирую запросы. Спасибо, Рахим, помог открыть дверь в этот мир, безмерно благодарен»" class="w-full rounded-lg border border-gray-200" />
+    <img src="/img/cases/lms-platform/testimonial-3.png" alt="Ученик: «Заработал первые деньги в новой профессии. Появилась уверенность, спасибо». Работа на бирже и фрилансе" class="w-full rounded-lg border border-gray-200" />
+    <img src="/img/cases/lms-platform/testimonial-6.png" alt="Rasul Guseinov: несколько лет писал на PHP с чувством, что делает неправильно. После курса понял, какой код писал раньше. «Подход обучения уникальный, всем рекомендую»" class="w-full rounded-lg border border-gray-200 bg-black" />
+    <img src="/img/cases/lms-platform/testimonial-8.png" alt="Максим Соловьев: пришел полным нулем, самоучкой не понимал, куда двигаться. На курсе практика как в реальном проекте, помогают в группе. «Если хочешь научиться писать код, а не переписывать — бери»" class="w-full rounded-lg border border-gray-200 bg-black" />
+    <img src="/img/cases/lms-platform/testimonial-9.png" alt="Oleg Khayrullin: курс закрывает лакуну с практикой, были проблемы с ООП — знал как, но не понимал почему. «Все последовательно и структурировано, искал именно такой курс и нашел»" class="w-full rounded-lg border border-gray-200 bg-black" />
+    <img src="/img/cases/lms-platform/testimonial-5.png" alt="Ильдар Сибгатулин: «До уроков думал, что не могу нормально кодить. Учит на примерах и реальной верстке. Сейчас спокойно пишу код и понимаю его. Всем советую»" class="w-full rounded-lg border border-gray-200 bg-black" />
+    <img src="/img/cases/lms-platform/testimonial-10.png" alt="Vladimir: «Структурированный курс, уроки по 10 минут, без воды. Показывает эволюцию от процедурного подхода к ООП. Рахим уделяет время и отвечает на вопросы»" class="w-full rounded-lg border border-gray-200 bg-black" />
+    <img src="/img/cases/lms-platform/testimonial-11.png" alt="Ученик: «Очень рад, что выбрал Рахима для изучения Laravel. Получил глубокие знания. Рекомендую квалифицированного и терпеливого наставника»" class="w-full rounded-lg border border-gray-200 bg-black" />
+  </div>
+</div>
+</div>
+
+## Стек и результат
+
+Бэкенд я написал на Laravel. На нем держится вся логика: курсы, потоки,
+доступы и проверка домашних заданий. Данные лежат в PostgreSQL. Там связаны
+ученики, группы, курсы, уроки и прогресс. Фронтенд я сделал на React и взял
+готовые компоненты из shadcn/ui. Приложение и окружение собрал в Docker, на
+ноутбуке и на сервере оно одинаковое. Деплой идет через CI/CD. Я делаю пуш,
+дальше проходит прогон и выкат.
+
+Через платформу прошло 90 учеников. Я вел три курса одним путем: PHP с нуля,
+ООП и Laravel. Обучение шло живыми потоками в группах. Весь учет я держал в
+одной системе: прогресс, доступы, домашние задания и вопросы. Освободилось
+время на само обучение.
+

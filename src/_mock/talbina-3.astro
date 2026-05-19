@@ -1,0 +1,182 @@
+---
+const book = {
+  title: 'Атомные привычки',
+  author: 'Джеймс Клир',
+  last: 218,
+  total: 384,
+  cover: 'https://s.f.kz/prod/3353/3352469_1000.jpg',
+};
+const pct = Math.round((book.last / book.total) * 100);
+const sessions = [
+  { date: 'Сегодня', when: '21:40', from: 196, to: 218, min: 34 },
+  { date: 'Вчера', when: '08:15', from: 168, to: 196, min: 41 },
+  { date: '14 мая', when: '22:05', from: 140, to: 168, min: 38 },
+  { date: '12 мая', when: '19:30', from: 118, to: 140, min: 29 },
+  { date: '11 мая', when: '07:50', from: 96, to: 118, min: 33 },
+];
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>talbina — Книга</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #894e58; --on-primary: #fff7f7; --primary-container: #feb2bd;
+        --surface: #fcf9f7; --sc-lowest: #ffffff; --sc-low: #f6f3f1;
+        --sc-high: #eae8e5; --on-surface: #323331; --on-surface-variant: #5f5f5d;
+        --outline-variant: #b3b2af;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { background: var(--surface); }
+      body { font-family: 'Inter', sans-serif; }
+      .phone { width: 100vw; height: 100vh; background: var(--surface);
+        color: var(--on-surface); position: relative; overflow: hidden; }
+      .ms { font-family: 'Material Symbols Outlined'; font-weight: normal;
+        font-style: normal; line-height: 1; display: inline-block; vertical-align: middle;
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      .ms.fill { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+      .appbar { position: absolute; top: 0; left: 0; right: 0; height: 56px;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 12px; background: rgba(252,249,247,.8); backdrop-filter: blur(12px);
+        box-shadow: 0 8px 24px rgba(50,51,49,.04); z-index: 50; }
+      .appbar .ic { width: 40px; height: 40px; display: grid; place-items: center;
+        color: var(--on-surface); }
+      .appbar .ic .ms { font-size: 24px; }
+      .appbar .ttl { font-family: 'Montserrat', sans-serif; font-weight: 700;
+        font-size: 15px; color: var(--on-surface); }
+
+      .main { position: absolute; top: 56px; bottom: 64px; left: 0; right: 0;
+        overflow: hidden; padding: 24px 16px 0; }
+
+      .hero { display: flex; gap: 16px; }
+      .hero .cover { width: 96px; height: 138px; border-radius: 10px; flex-shrink: 0;
+        overflow: hidden; background: var(--sc-high);
+        box-shadow: 0 12px 26px -12px rgba(50,51,49,.55); }
+      .hero .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .hero .meta { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+      .hero .meta .t { font-family: 'Montserrat', sans-serif; font-weight: 700;
+        font-size: 19px; line-height: 1.25; }
+      .hero .meta .a { font-size: 13px; color: var(--on-surface-variant); margin-top: 4px; }
+      .hero .meta .prog { margin-top: auto; }
+      .hero .meta .bar { height: 6px; background: var(--sc-high); border-radius: 99px;
+        overflow: hidden; }
+      .hero .meta .bar i { display: block; height: 100%; background: var(--primary);
+        border-radius: 99px; }
+      .hero .meta .pg { font-size: 11px; color: var(--on-surface-variant); margin-top: 6px;
+        display: flex; justify-content: space-between; }
+
+      .stats { display: flex; gap: 8px; margin-top: 20px; }
+      .stat { flex: 1; background: var(--sc-lowest); border-radius: 12px;
+        border: 1px solid rgba(179,178,175,.15); padding: 12px; text-align: center; }
+      .stat .v { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 17px;
+        color: var(--primary); }
+      .stat .k { font-size: 10.5px; color: var(--on-surface-variant); margin-top: 3px;
+        text-transform: uppercase; letter-spacing: .06em; }
+
+      .cta { width: 100%; display: flex; align-items: center; justify-content: center;
+        gap: 8px; margin-top: 16px; padding: 14px; border: 0; border-radius: 12px;
+        background: var(--primary); color: var(--on-primary); font: inherit;
+        font-weight: 600; font-size: 15px; cursor: pointer;
+        box-shadow: 0 8px 20px -10px rgba(137,78,88,.7); }
+      .cta .ms { font-size: 20px; }
+
+      .sec { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px;
+        margin: 26px 4px 12px; }
+      .ses { display: flex; align-items: center; gap: 12px; padding: 12px;
+        background: var(--sc-lowest); border-radius: 12px;
+        border: 1px solid rgba(179,178,175,.15); margin-bottom: 8px; }
+      .ses .day { width: 40px; height: 40px; border-radius: 999px; flex-shrink: 0;
+        background: rgba(254,178,189,.2); color: var(--primary); display: grid;
+        place-items: center; }
+      .ses .day .ms { font-size: 18px; }
+      .ses .b { flex: 1; min-width: 0; }
+      .ses .b .d { font-weight: 600; font-size: 14px; }
+      .ses .b .s { font-size: 12px; color: var(--on-surface-variant); margin-top: 2px; }
+      .ses .r { text-align: right; }
+      .ses .r .pp { font-weight: 600; font-size: 13px; color: var(--primary); }
+      .ses .r .mm { font-size: 11px; color: var(--on-surface-variant); margin-top: 2px; }
+
+      .nav { position: absolute; bottom: 0; left: 0; right: 0; height: 64px;
+        display: flex; justify-content: space-around; align-items: center;
+        padding: 0 16px; background: rgba(252,249,247,.8); backdrop-filter: blur(12px);
+        box-shadow: 0 -4px 24px rgba(50,51,49,.04); border-radius: 12px 12px 0 0; z-index: 50; }
+      .nav a { display: flex; flex-direction: column; align-items: center;
+        gap: 2px; padding: 4px 12px; border-radius: 12px;
+        color: rgba(50,51,49,.5); text-decoration: none; }
+      .nav a.on { background: rgba(254,178,189,.2); color: var(--primary); }
+      .nav a .ms { font-size: 24px; }
+      .nav a span { font-size: 10px; text-transform: uppercase; letter-spacing: .06em;
+        margin-top: 2px; }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="appbar">
+        <div class="ic"><span class="ms">arrow_back</span></div>
+        <span class="ttl">Книга</span>
+        <div class="ic"><span class="ms">more_vert</span></div>
+      </div>
+
+      <div class="main">
+        <div class="hero">
+          <div class="cover"><img src={book.cover} alt={book.title} /></div>
+          <div class="meta">
+            <div>
+              <div class="t">{book.title}</div>
+              <div class="a">{book.author}</div>
+            </div>
+            <div class="prog">
+              <div class="bar"><i style={`width:${pct}%`}></i></div>
+              <div class="pg">
+                <span>{book.last} / {book.total} стр.</span>
+                <span>{pct}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><div class="v">218</div><div class="k">страниц</div></div>
+          <div class="stat"><div class="v">14</div><div class="k">сессий</div></div>
+          <div class="stat"><div class="v">8ч 12м</div><div class="k">время</div></div>
+        </div>
+
+        <button class="cta">
+          <span class="ms fill">play_arrow</span>
+          Продолжить чтение
+        </button>
+
+        <div class="sec">Сессии чтения</div>
+        {sessions.map((s) => (
+          <div class="ses">
+            <div class="day"><span class="ms">menu_book</span></div>
+            <div class="b">
+              <div class="d">{s.date}</div>
+              <div class="s">{s.when} · с. {s.from} → {s.to}</div>
+            </div>
+            <div class="r">
+              <div class="pp">+{s.to - s.from} стр.</div>
+              <div class="mm">{s.min} мин</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <nav class="nav">
+        <a><span class="ms">auto_stories</span><span>Читаю</span></a>
+        <a class="on"><span class="ms fill">library_books</span><span>Прочитано</span></a>
+        <a><span class="ms">trending_up</span><span>Прогресс</span></a>
+        <a><span class="ms">person</span><span>Профиль</span></a>
+      </nav>
+    </div>
+  </body>
+</html>

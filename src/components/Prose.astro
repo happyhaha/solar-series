@@ -1,0 +1,140 @@
+---
+---
+
+<div class="prose-custom max-w-2xl">
+  <slot />
+</div>
+
+<style is:global>
+  .prose-custom {
+    font-size: 18px;
+    line-height: var(--leading-prose);
+    color: var(--color-prose-body);
+  }
+  @media (min-width: 768px) {
+    .prose-custom { font-size: 20px; }
+  }
+  .prose-custom h2 {
+    font-size: 1.6em;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-top: 2.2em;
+    margin-bottom: 0.6em;
+  }
+  .prose-custom h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-top: 1.8em;
+    margin-bottom: 0.5em;
+  }
+  .prose-custom p {
+    margin-top: 0;
+    margin-bottom: 1.1em;
+  }
+  .prose-custom ul,
+  .prose-custom ol {
+    margin: 0 0 1.2em 1.4em;
+  }
+  .prose-custom ul { list-style: disc; }
+  .prose-custom ol { list-style: decimal; }
+  .prose-custom li { margin-bottom: 0.4em; }
+  .prose-custom a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 0.5px;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 25%, transparent);
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+  .prose-custom a:hover {
+    color: var(--color-accent-hover);
+    text-decoration-color: color-mix(in srgb, var(--color-accent-hover) 40%, transparent);
+  }
+  .prose-custom strong { font-weight: 700; }
+  .prose-custom blockquote {
+    border-left: 2px solid var(--color-prose-quote-border);
+    padding-left: 1em;
+    margin: 1.4em 0;
+    font-style: italic;
+    color: var(--color-prose-quote);
+  }
+  .prose-custom pre {
+    background: var(--color-prose-code-bg);
+    padding: 1em 1.2em;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin: 1.4em 0;
+  }
+  .prose-custom code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+  }
+  .prose-custom :not(pre) > code {
+    background: var(--color-prose-code-inline-bg);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+  .prose-custom img {
+    width: 100%;
+    height: auto;
+    margin: 1.5em 0;
+  }
+  .prose-custom .not-prose img {
+    margin: 0;
+  }
+  /* Текст + портретное фото рядом, шире колонки max-w-2xl.
+     Тот же приём, что в SplitShot: ширина от вьюпорта, без отрицательных
+     margin (Prose прижат влево, не центрирован). body overflow-x-clip
+     убирает горизонтальный скролл. */
+  .prose-custom .story-split {
+    width: calc(100vw - 3rem);
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .prose-custom .story-split .story-text {
+    font-size: inherit;
+  }
+  .prose-custom .story-split img {
+    width: 100%;
+    margin: 0;
+    border-radius: 0.75rem;
+  }
+  /* Широкий скриншот: тот же приём, что story-split */
+  .prose-custom .shot-wide {
+    width: calc(100vw - 3rem);
+    margin: 1.5rem 0;
+  }
+  .prose-custom .shot-wide img {
+    width: 100%;
+    margin: 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  @media (min-width: 768px) {
+    .prose-custom .shot-wide {
+      width: calc(100vw - 6rem);
+    }
+    .prose-custom .story-split {
+      width: calc(100vw - 6rem);
+      flex-direction: row;
+      align-items: center;
+      gap: 3.5rem;
+    }
+    .prose-custom .story-split .story-text {
+      flex: 1;
+      max-width: 38rem;
+    }
+    .prose-custom .story-split img {
+      width: 460px;
+      flex: none;
+      align-self: center;
+    }
+  }
+</style>

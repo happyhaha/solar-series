@@ -1,0 +1,101 @@
+---
+interface Props {
+  alt: string;
+  screens?: string[];
+}
+
+const { alt, screens } = Astro.props;
+// Реальные скрины если есть, иначе 3 заглушки accent-цветом.
+const items = screens && screens.length > 0 ? screens : [null, null, null];
+const widthClass =
+  items.length <= 2 ? 'w-[44%] max-w-[280px]' : 'w-[32%] max-w-[230px]';
+---
+
+<div
+  class="flex w-full items-end justify-center gap-5 rounded-lg bg-gray-100 px-4 py-6 md:gap-9 md:py-9"
+>
+  {items.map((src) => (
+    <div class:list={[widthClass, 'device']}>
+      <div class="device__frame">
+        <span class="device__btn device__btn--silent"></span>
+        <span class="device__btn device__btn--vol device__btn--vol1"></span>
+        <span class="device__btn device__btn--vol device__btn--vol2"></span>
+        <span class="device__btn device__btn--power"></span>
+        <div class="device__screen">
+          {src ? (
+            <img src={src} alt={alt} loading="lazy" class="device__img" />
+          ) : (
+            <div class="device__ph bg-accent"></div>
+          )}
+          <span class="device__island"></span>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  /* Аспект корпуса айфона; экран = 390/844 ≈ 9/19.5 */
+  .device { container-type: inline-size; }
+  .device__frame {
+    position: relative;
+    border-radius: 16cqw;
+    padding: 3.4cqw;
+    background:
+      linear-gradient(150deg, #3a3a3d 0%, #1c1c1e 28%, #2c2c2e 55%, #161617 100%);
+    box-shadow:
+      0 24px 48px -20px rgba(0, 0, 0, 0.55),
+      0 4px 12px -4px rgba(0, 0, 0, 0.35),
+      inset 0 0 0 0.4cqw rgba(255, 255, 255, 0.06);
+  }
+  .device__screen {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12cqw;
+    background: #000;
+    font-size: 0;
+  }
+  .device__img { display: block; width: 100%; height: auto; }
+  .device__ph { width: 100%; aspect-ratio: 9 / 19.5; }
+  /* Dynamic Island */
+  .device__island {
+    position: absolute;
+    top: 2.6cqw;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30cqw;
+    height: 8cqw;
+    background: #000;
+    border-radius: 999px;
+    z-index: 2;
+  }
+  /* Боковые кнопки */
+  .device__btn {
+    position: absolute;
+    background: linear-gradient(90deg, #1a1a1c, #404043, #1a1a1c);
+    z-index: 1;
+  }
+  .device__btn--silent {
+    left: -0.5cqw;
+    top: 19cqw;
+    width: 0.9cqw;
+    height: 5cqw;
+    border-radius: 2px 0 0 2px;
+  }
+  .device__btn--vol {
+    left: -0.7cqw;
+    width: 1cqw;
+    height: 9cqw;
+    border-radius: 2px 0 0 2px;
+  }
+  .device__btn--vol1 { top: 28cqw; }
+  .device__btn--vol2 { top: 40cqw; }
+  .device__btn--power {
+    right: -0.7cqw;
+    top: 32cqw;
+    width: 1cqw;
+    height: 14cqw;
+    border-radius: 0 2px 2px 0;
+  }
+</style>

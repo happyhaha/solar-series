@@ -1,0 +1,82 @@
+---
+const months = [
+  { m: 'май', y: '2025', sum: '375 300 ₸', cur: true },
+  { m: 'апрель', y: '2025', sum: '402 900 ₸' },
+  { m: 'март', y: '2025', sum: '388 100 ₸' },
+  { m: 'февраль', y: '2025', sum: '356 700 ₸' },
+  { m: 'январь', y: '2025', sum: '419 540 ₸' },
+  { m: 'декабрь', y: '2024', sum: '511 200 ₸' },
+];
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meld — Месяц</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,350;0,9..144,400;1,9..144,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fbf8f2; --ink: #1a1917; --ink-muted: #6e6a62; --ink-faint: #b1aba0;
+        --hair: rgba(26,25,23,.09); --hair-strong: rgba(26,25,23,.16);
+        --chip-bg: rgba(26,25,23,.05);
+        --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+        --font-serif: 'Fraunces', Georgia, serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { background: var(--bg); }
+      body { font-family: var(--font-sans); }
+      .phone { width: 100vw; min-height: 100vh; background: var(--bg); color: var(--ink);
+        font-size: 17px; line-height: 1.45; position: relative; overflow: hidden; }
+      .behind { position: absolute; inset: 0; padding: 60px 20px;
+        filter: saturate(.8) blur(2px); opacity: .5; }
+      .behind .balance { font-family: var(--font-serif); font-weight: 350; font-size: 80px;
+        line-height: 1; }
+      .backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.38); }
+      .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--bg);
+        border-radius: 20px 20px 0 0; padding: 12px 20px 28px;
+        box-shadow: 0 -12px 40px -12px rgba(26,25,23,.35); }
+      .grab { width: 36px; height: 4px; border-radius: 99px; background: var(--hair-strong);
+        margin: 0 auto 18px; }
+      .title { font-family: var(--font-serif); font-weight: 400; font-size: 22px;
+        margin-bottom: 14px; }
+      .row { display: flex; align-items: center; justify-content: space-between;
+        padding: 16px 16px; border-radius: 14px; }
+      .row + .row { margin-top: 4px; }
+      .row.active { background: var(--ink); }
+      .row .m { font-family: var(--font-serif); font-style: italic; font-size: 19px; }
+      .row .y { font-size: 12px; color: var(--ink-faint); margin-left: 8px;
+        font-style: normal; font-family: var(--font-sans); }
+      .row .s { font-size: 13px; color: var(--ink-muted);
+        font-variant-numeric: tabular-nums; }
+      .row.active .m, .row.active .s { color: var(--bg); }
+      .row.active .y { color: rgba(251,248,242,.6); }
+      .row:not(.active):nth-child(n+3) { border-top: 1px solid var(--hair); border-radius: 0; }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="behind">
+        <div class="balance">248 600 ₸</div>
+      </div>
+      <div class="backdrop"></div>
+
+      <div class="sheet">
+        <div class="grab"></div>
+        <h2 class="title">Выпуск</h2>
+
+        {months.map((mo) => (
+          <div class:list={['row', mo.cur ? 'active' : '']}>
+            <span class="m">{mo.m}<span class="y">{mo.y}</span></span>
+            <span class="s">{mo.sum}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </body>
+</html>

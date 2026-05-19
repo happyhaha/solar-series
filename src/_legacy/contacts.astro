@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+---
+<BaseLayout title="Контакты">
+    <section class="max-w-6xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-10">
+    <!-- Левая часть -->
+    <div class="flex-1 space-y-8">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">Рахим Муратов</h1>
+        <p class="text-lg text-gray-700 dark:text-gray-300">
+        Программирую, обучаю и веду канал на ютуб. Провожу наставничество, пишу в блог, записываю подкасты. Все на тему разработки, фриланса и саморазвитии.
+        </p>
+
+        <div class="pt-6 space-y-2">
+        <p class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wide">Контакты</p>
+            <div class="flex flex-wrap gap-4">
+                <a href="https://t.me/rahim_muratov" class="text-blue-500 hover:text-blue-600 border-b border-blue-500/50 hover:border-blue-600 pb-[1px] transition" target="_blank">Телеграм</a>
+                <a href="https://youtube.com/user/tobecloser007" class="text-blue-500 hover:text-blue-600 border-b border-blue-500/50 hover:border-blue-600 pb-[1px] transition" target="_blank">Ютуб</a>
+                <a href="https://t.me/rahim_muratov" class="text-blue-500 hover:text-blue-600 border-b border-blue-500/50 hover:border-blue-600 pb-[1px] transition" target="_blank">Канал</a>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <!-- Правая часть -->
+    <div class="flex-1 hidden md:block">
+        <img
+        src="/img/rahim_portrait2.jpg"
+        alt="Фото Рахима Муратова"
+        class="w-full h-[500px] object-cover rounded-2xl shadow-lg"
+        />
+    </div>
+    </section>
+</BaseLayout>

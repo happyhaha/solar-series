@@ -1,43 +1,26 @@
 @import "tailwindcss";
+@import "./tokens.css";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
-@font-face {
-  font-family: "Roboto";
-  src: url("/fonts/roboto/Roboto-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Roboto";
-  src: url("/fonts/roboto/Roboto-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
-@font-face {
-  font-family: "Roboto";
-  src: url("/fonts/roboto/Roboto-Black.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01", "ss03";
 }
 
-@font-face {
-  font-family: "Teletactile";
-  src: url("/fonts/Teletactile/TeletactileRus.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+.hero-caret {
+  display: inline-block;
+  width: 7px;
+  height: 0.72em;
+  vertical-align: baseline;
+  background: currentColor;
+  animation: caret-blink 1.2s linear infinite;
 }
 
-@theme {
-  --font-sans: "Montserrat", system-ui, sans-serif;
-  --font-pixel: "Teletactile";
-}
-
-html, body, * {
-  transition: background-color 0.2s ease, color 0.2s ease, fill 0.2s ease, stroke 0.2s ease, filter 0.2s ease;
+@keyframes caret-blink {
+  0%, 45%   { opacity: 1; }
+  50%, 95%  { opacity: 0; }
+  100%      { opacity: 1; }
 }

@@ -1,0 +1,122 @@
+---
+// CategoriesSheet — нижний лист поверх затемнённого Home (открывается из Настроек)
+const expense = [
+  { emo: '🛒', name: 'продукты', n: 14 },
+  { emo: '🍽', name: 'кафе', n: 9 },
+  { emo: '🚕', name: 'транспорт', n: 11 },
+  { emo: '🏠', name: 'дом и связь', n: 4 },
+  { emo: '💊', name: 'здоровье', n: 3 },
+  { emo: '👕', name: 'одежда', n: 5 },
+  { emo: '🎬', name: 'развлечения', n: 7 },
+  { emo: '📚', name: 'образование', n: 2 },
+  { emo: '🎁', name: 'подарки', n: 2 },
+];
+const income = [
+  { emo: '💸', name: 'зарплата', n: 2 },
+  { emo: '💻', name: 'фриланс', n: 4 },
+  { emo: '📈', name: 'инвестиции', n: 1 },
+];
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meld — Категории</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,350;0,9..144,400;1,9..144,400&display=swap"
+      rel="stylesheet"
+    />
+    <style is:inline>
+      :root {
+        --bg: #fbf8f2; --ink: #1a1917; --ink-muted: #6e6a62; --ink-faint: #b1aba0;
+        --paper: #f3eee5; --hair: rgba(26,25,23,.09); --hair-strong: rgba(26,25,23,.16);
+        --chip-bg: rgba(26,25,23,.05); --income: #2f6b3b;
+        --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+        --font-serif: 'Fraunces', Georgia, serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { background: var(--bg); }
+      body { font-family: var(--font-sans); }
+      .phone { width: 100vw; min-height: 100vh; background: var(--bg); color: var(--ink);
+        font-size: 17px; line-height: 1.45; position: relative; overflow: hidden; }
+      .behind { position: absolute; inset: 0; padding: 60px 20px;
+        filter: saturate(.8) blur(2px); opacity: .5; }
+      .behind .today { font-family: var(--font-serif); font-style: italic; font-size: 13px;
+        color: var(--ink-muted); }
+      .behind .balance { font-family: var(--font-serif); font-weight: 350; font-size: 80px;
+        line-height: 1; margin-top: 6px; }
+      .backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.38); }
+      .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--bg);
+        border-radius: 20px 20px 0 0; padding: 12px 20px 28px;
+        box-shadow: 0 -12px 40px -12px rgba(26,25,23,.35); }
+      .grab { width: 36px; height: 4px; border-radius: 99px; background: var(--hair-strong);
+        margin: 0 auto 18px; }
+      .title { font-family: var(--font-serif); font-weight: 400; font-size: 22px;
+        margin-bottom: 20px; }
+      .lbl { font-family: var(--font-serif); font-style: italic; font-size: 13px;
+        color: var(--ink-muted); margin: 18px 0 8px; }
+      .row { display: flex; align-items: center; justify-content: space-between;
+        padding: 15px 0; border-top: 1px solid var(--hair); }
+      .row .l { display: flex; align-items: center; gap: 14px; }
+      .row .emo { font-size: 18px; width: 22px; text-align: center; }
+      .row .t { font-size: 15px; }
+      .row .s { font-size: 12px; color: var(--ink-faint); margin-top: 2px; }
+      .chev { color: var(--ink-faint); }
+      .add { display: flex; align-items: center; gap: 14px; padding: 15px 0;
+        border-top: 1px solid var(--hair); color: var(--ink-muted); }
+      .add .plus { font-size: 18px; width: 22px; text-align: center; }
+      .add .t { font-family: var(--font-serif); font-style: italic; font-size: 15px; }
+      .ver { text-align: center; color: var(--ink-faint); font-size: 12px; margin-top: 24px;
+        font-family: var(--font-serif); font-style: italic; }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="behind">
+        <div class="today">вторник, 16 мая</div>
+        <div class="balance">248 600 ₸</div>
+      </div>
+      <div class="backdrop"></div>
+
+      <div class="sheet">
+        <div class="grab"></div>
+        <h2 class="title">Категории</h2>
+
+        <div class="lbl">расходы</div>
+        {expense.map((c) => (
+          <div class="row">
+            <div class="l">
+              <span class="emo">{c.emo}</span>
+              <div>
+                <div class="t">{c.name}</div>
+                <div class="s">{c.n} операций</div>
+              </div>
+            </div>
+            <span class="chev">›</span>
+          </div>
+        ))}
+        <div class="add"><span class="plus">＋</span><span class="t">новая категория</span></div>
+
+        <div class="lbl">доходы</div>
+        {income.map((c) => (
+          <div class="row">
+            <div class="l">
+              <span class="emo">{c.emo}</span>
+              <div>
+                <div class="t">{c.name}</div>
+                <div class="s">{c.n} операций</div>
+              </div>
+            </div>
+            <span class="chev">›</span>
+          </div>
+        ))}
+        <div class="add"><span class="plus">＋</span><span class="t">новая категория</span></div>
+
+        <div class="ver">Meld · версия 1.4.0</div>
+      </div>
+    </div>
+  </body>
+</html>

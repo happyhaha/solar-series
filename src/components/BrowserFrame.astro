@@ -1,0 +1,47 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  url?: string;
+  compact?: boolean;
+  loading?: 'lazy' | 'eager';
+  aspect?: string;
+  fit?: 'cover' | 'contain';
+}
+
+const { src, alt, url, compact = false, loading = 'eager', aspect = '16 / 9', fit = 'cover' } = Astro.props;
+const displayUrl = url ? url.replace(/^https?:\/\//, '').replace(/\/$/, '') : '';
+---
+
+<div class="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+  <div
+    class:list={[
+      'flex items-center border-b border-gray-200 bg-gray-100',
+      compact ? 'gap-2 px-3 py-2' : 'gap-3 px-4 py-3',
+    ]}
+  >
+    <div class:list={['flex shrink-0', compact ? 'gap-1' : 'gap-1.5']}>
+      <span class:list={['rounded-full bg-gray-300', compact ? 'size-2' : 'size-3']}></span>
+      <span class:list={['rounded-full bg-gray-300', compact ? 'size-2' : 'size-3']}></span>
+      <span class:list={['rounded-full bg-gray-300', compact ? 'size-2' : 'size-3']}></span>
+    </div>
+    <div
+      class:list={[
+        'mx-auto w-full truncate rounded-md bg-white text-center text-gray-400',
+        compact ? 'max-w-[10rem] px-2 py-0.5 text-[10px]' : 'max-w-md px-3 py-1 text-xs',
+      ]}
+    >
+      {displayUrl}
+    </div>
+  </div>
+  <img
+    src={src}
+    alt={alt}
+    loading={loading}
+    style={`aspect-ratio:${aspect}`}
+    class:list={[
+      'block w-full bg-gray-100 object-top',
+      fit === 'contain' ? 'object-contain' : 'object-cover',
+    ]}
+  />
+</div>

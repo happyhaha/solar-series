@@ -1,0 +1,208 @@
+---
+// Прототип сравнения подходов к аннотации больших скринов.
+// Один реальный скрин в 3 вариантах. Меняй координаты в `spots`.
+const img = '/img/cases/case-one/admin-dashboard.png';
+const imgAlt = 'Дашборд администратора платформы';
+
+// x,y — проценты по картинке (где ставим указатель).
+// Подбирается на глаз, тут стартовые значения — крути и смотри.
+const spots = [
+  { n: 1, x: 58, y: 16, title: 'Состояние потока',
+    text: 'Сколько работ на проверке, активность за 2 дня, средний прогресс. Видно за пару секунд.' },
+  { n: 2, x: 63, y: 33, title: 'Очередь проверки',
+    text: 'Кто сдал и ждёт ответа. Раньше это терялось в чате.' },
+  { n: 3, x: 60, y: 58, title: 'Ближайшие занятия',
+    text: 'Что и когда разбираем, с кем. Расписание не в голове.' },
+  { n: 4, x: 58, y: 84, title: 'Кто давно не заходил',
+    text: 'Список тех, кто пропал. Сразу видно, к кому подойти.' },
+];
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Прототип: аннотации скринов</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        color: #1a1a1a; background: #fafafa; line-height: 1.6;
+        padding: 32px 16px 96px;
+      }
+      .wrap { max-width: 1100px; margin: 0 auto; }
+      h1 { font-size: 1.5rem; margin-bottom: 4px; }
+      .sub { color: #777; margin-bottom: 40px; font-size: .95rem; }
+      h2 {
+        font-size: 1.15rem; margin: 56px 0 6px;
+        border-top: 1px solid #e3e3e3; padding-top: 32px;
+      }
+      .note { color: #888; font-size: .9rem; margin-bottom: 20px; }
+
+      /* пины-кружки на картинке */
+      /* мобила — пин крошечный */
+      .pin {
+        position: absolute; width: 14px; height: 14px;
+        transform: translate(-50%, -50%);
+        background: #9aa0a6; color: #fff; border-radius: 999px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 8px; font-weight: 500; line-height: 1;
+        font-variant-numeric: tabular-nums; text-align: center;
+        border: 1px solid #fff;
+        box-shadow: 0 1px 3px rgba(0,0,0,.18); z-index: 2;
+      }
+      .shot { position: relative; width: 100%; }
+      .shot img { display: block; width: 100%; border-radius: 10px; border: 1px solid #e0e0e0; }
+
+      /* --- A: десктоп — пины + боковая легенда --- */
+      .a-grid { display: flex; flex-direction: column; gap: 20px; }
+      .legend { list-style: none; display: none; }
+      .legend li { display: flex; gap: 12px; }
+      .legend .b {
+        flex: 0 0 22px; height: 22px; background: #9aa0a6; color: #fff;
+        border-radius: 999px; display: flex; align-items: center;
+        justify-content: center; font-size: 12px; font-weight: 500;
+        line-height: 1; font-variant-numeric: tabular-nums;
+      }
+      .legend .t strong { display: block; font-size: .98rem; }
+      .legend .t span { color: #666; font-size: .92rem; }
+
+      /* мобила — плашка с мелким текстом сбоку от пина */
+      .pin-note {
+        position: absolute; width: 96px; background: #111; color: #fff;
+        z-index: 3; padding: 4px 6px; border-radius: 5px;
+        font-size: 8px; line-height: 1.3;
+        box-shadow: 0 2px 7px rgba(0,0,0,.3);
+        transform: translate(12px, -50%);
+      }
+      .pin-note strong { display: block; font-size: 8px; margin-bottom: 1px; }
+      .pin-note::after {
+        content: ''; position: absolute; top: 50%; left: -3px;
+        width: 6px; height: 6px; background: #111;
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      @media (min-width: 1024px) {
+        .a-grid { display: grid; grid-template-columns: 1fr 320px; align-items: stretch; }
+        /* правый столбец = высота скрина, пункты на уровне своих пинов */
+        .a-grid .legend { position: relative; height: 100%; display: flex; flex-direction: column; }
+        .a-grid .legend li {
+          position: absolute; left: 0; right: 0;
+          transform: translateY(-50%);
+        }
+        .pin-note { display: none; }
+        /* десктоп — крупный пин */
+        .pin {
+          width: 54px; height: 54px; font-size: 28px;
+          border-width: 3px; box-shadow: 0 2px 6px rgba(0,0,0,.18);
+        }
+      }
+
+      /* --- B: текст+стрелка поверх (десктоп), легенда снизу (мобила) --- */
+      .b-over { display: none; }
+      .callout {
+        position: absolute; max-width: 220px; z-index: 3;
+        background: #111; color: #fff; padding: 10px 12px;
+        border-radius: 8px; font-size: .85rem; line-height: 1.45;
+        box-shadow: 0 4px 14px rgba(0,0,0,.25);
+      }
+      .callout strong { display: block; margin-bottom: 2px; }
+      .callout::after {
+        content: ''; position: absolute; width: 10px; height: 10px;
+        background: #111; transform: rotate(45deg);
+      }
+      .callout.left::after  { right: -5px; top: 16px; }
+      .callout.right::after { left: -5px; top: 16px; }
+      @media (min-width: 1024px) {
+        .b-over { display: block; }
+        .b-list { display: none; }
+      }
+
+      /* --- C: нарезка кропами --- */
+      .c-grid { display: flex; flex-direction: column; gap: 28px; }
+      .crop {
+        width: 100%; aspect-ratio: 24 / 7; overflow: hidden;
+        border-radius: 10px; border: 1px solid #e0e0e0;
+      }
+      .crop img { width: 100%; height: 100%; object-fit: cover; }
+      .cap { margin-top: 8px; }
+      .cap strong { font-size: .98rem; }
+      .cap span { color: #666; font-size: .92rem; display: block; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Прототип: навигация по большим скринам</h1>
+      <p class="sub">Один и тот же скрин в 3 вариантах. Меняй ширину окна — смотри мобилу и десктоп.</p>
+
+      <!-- ВАРИАНТ A -->
+      <h2>A — Номерные пины + легенда</h2>
+      <p class="note">Десктоп: легенда в правом поле. Мобила: легенда колонкой под скрином. Один скрин на всё.</p>
+      <div class="a-grid">
+        <div class="shot">
+          <img src={img} alt={imgAlt} />
+          {spots.map((s) => (
+            <span class="pin" style={`left:${s.x}%;top:${s.y}%`}>{s.n}</span>
+          ))}
+          {spots.map((s) => (
+            <div class="pin-note" style={`left:${s.x}%;top:${s.y}%`}>
+              <strong>{s.n}. {s.title}</strong>{s.text}
+            </div>
+          ))}
+        </div>
+        <ul class="legend">
+          {spots.map((s) => (
+            <li style={`top:${s.y}%`}>
+              <span class="b">{s.n}</span>
+              <span class="t"><strong>{s.title}</strong><span>{s.text}</span></span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- ВАРИАНТ B -->
+      <h2>B — Текст + стрелка поверх скрина</h2>
+      <p class="note">Десктоп: подписи прямо на картинке. Мобила: тот же контент списком под скрином (overlay скрыт).</p>
+      <div class="shot">
+        <img src={img} alt={imgAlt} />
+        {spots.map((s) => (
+          <span class="pin b-over" style={`left:${s.x}%;top:${s.y}%`}>{s.n}</span>
+        ))}
+        <div class="b-over callout right" style="left:64%;top:9%">
+          <strong>1 · Состояние потока</strong>Цифры по потоку — за пару секунд.
+        </div>
+        <div class="b-over callout left" style="right:62%;top:23%">
+          <strong>2 · Очередь проверки</strong>Кто ждёт ответа. Не теряется в чате.
+        </div>
+        <div class="b-over callout left" style="right:62%;top:49%">
+          <strong>3 · Ближайшие занятия</strong>Что и когда разбираем.
+        </div>
+        <div class="b-over callout left" style="right:62%;top:73%">
+          <strong>4 · Кто давно не заходил</strong>Видно, к кому подойти.
+        </div>
+      </div>
+      <ul class="legend b-list" style="margin-top:20px">
+        {spots.map((s) => (
+          <li>
+            <span class="b">{s.n}</span>
+            <span class="t"><strong>{s.title}</strong><span>{s.text}</span></span>
+          </li>
+        ))}
+      </ul>
+
+      <!-- ВАРИАНТ C -->
+      <h2>C — Нарезка на смысловые куски</h2>
+      <p class="note">Без стрелок. Каждый кусок крупно + подпись. (В прототипе кроп через CSS — финал режется по-настоящему.)</p>
+      <div class="c-grid">
+        {spots.map((s) => (
+          <div>
+            <div class="crop">
+              <img src={img} alt={s.title} style={`object-position:50% ${s.y}%`} />
+            </div>
+            <p class="cap"><strong>{s.n}. {s.title}</strong><span>{s.text}</span></p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </body>
+</html>
