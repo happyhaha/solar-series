@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "./tokens.css";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   -webkit-text-size-adjust: 100%;
 }
@@ -8,6 +10,76 @@ html {
 body {
   font-family: var(--font-sans);
   font-feature-settings: "cv11", "ss01", "ss03";
+}
+
+/* Reading layout: centered text column, full-width (capped) media.
+   Text children sit in the center column; direct <img> and .bleed
+   children break out to span wide, centered. body has overflow-x-clip. */
+.reading {
+  display: grid;
+  grid-template-columns: 1fr min(44rem, calc(100% - 3rem)) 1fr;
+}
+.reading > * {
+  grid-column: 2;
+}
+.reading > img,
+.reading > .bleed {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: min(48rem, calc(100% - 3rem));
+}
+/* Opt-out: keep an image within the reading column (respects its own max-w-*) */
+.reading > img.in-column {
+  grid-column: 2;
+  width: auto;
+}
+
+/* Typography + vertical rhythm — mirrors <Prose> so school pages read
+   like the cases/about pages, with more air between blocks. */
+.reading {
+  font-size: 18px;
+  line-height: var(--leading-prose);
+}
+@media (min-width: 768px) {
+  .reading { font-size: 20px; }
+}
+.reading p {
+  font-size: inherit;
+  margin: 0 0 1.15em;
+}
+.reading h1 {
+  margin: 0 0 0.4em;
+}
+.reading h2 {
+  font-size: 1.6em;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 2em 0 0.6em;
+}
+.reading h3 {
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 1.8em 0 0.5em;
+}
+.reading ul,
+.reading ol {
+  margin: 0 0 1.2em 1.4em;
+}
+.reading li {
+  margin-bottom: 0.5em;
+}
+.reading img {
+  margin-top: 0.4em;
+  margin-bottom: 0.6em;
+}
+.reading > img[src*="divider"] {
+  grid-column: 2;
+  width: auto;
+  max-width: 100%;
+  margin: 2.75em auto;
 }
 
 .hero-caret {

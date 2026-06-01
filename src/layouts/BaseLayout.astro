@@ -1,11 +1,22 @@
 ---
 import '../styles/global.css'
 const { title } = Astro.props;
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <html lang="en">
 	<head>
+		<script is:inline>
+			(function () {
+				try {
+					var t = localStorage.getItem('theme');
+					if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+						document.documentElement.classList.add('dark');
+					}
+				} catch (e) {}
+			})();
+		</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
@@ -23,7 +34,8 @@ import Footer from '../components/Footer.astro';
 
 		<title>{title}</title>
 	</head>
-	<body class="antialiased bg-white text-gray-900 overflow-x-clip">
+	<body class="antialiased bg-bg text-text overflow-x-clip">
+		<Header />
 		<slot />
 		<Footer />
 	</body>

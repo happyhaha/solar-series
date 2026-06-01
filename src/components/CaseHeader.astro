@@ -26,7 +26,7 @@ const lines = titleLines && titleLines.length > 0 ? titleLines : [title];
   <div class="flex flex-col gap-3 mt-6">
     {brand && brand !== 'марлиндев.ру' && (
       <span
-        class="font-heading text-sm md:text-base text-gray-500 tracking-display w-fit"
+        class="font-heading text-sm md:text-base text-muted tracking-display w-fit"
       >
         {brand}
       </span>
@@ -34,7 +34,7 @@ const lines = titleLines && titleLines.length > 0 ? titleLines : [title];
 
     {subtitle && (
       <p
-        class="font-heading text-xs md:text-sm text-gray-900 leading-tight tracking-display"
+        class="font-heading text-xs md:text-sm text-text leading-tight tracking-display"
       >
         {subtitle}
       </p>
@@ -51,7 +51,7 @@ const lines = titleLines && titleLines.length > 0 ? titleLines : [title];
     </h1>
 
     {summary && (
-      <p class="text-lg md:text-xl text-gray-900 leading-snug">
+      <p class="text-lg md:text-xl text-text leading-snug">
         {summary}
       </p>
     )}
